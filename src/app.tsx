@@ -1,3 +1,10 @@
+import logo from './assets/react-notes-logo.svg';
+
 export function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <div>
+      <img src={logo} />
+      <input placeholder="Search notes..." type="text" />
+    </div>
+  );
 }
