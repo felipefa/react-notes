@@ -34,6 +34,8 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
       return;
     }
 
+    handleStopRecording();
+
     onNoteCreated(content.trim());
 
     setContent('');
