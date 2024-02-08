@@ -47,11 +47,11 @@ export function NoteCard({
           {dateFormatted}
         </span>
 
-        <p className="text-sm leading-6 text-slate-400 text-ellipsis overflow-hidden">
+        <p className="text-sm leading-6 text-slate-400 text-ellipsis overflow-hidden whitespace-break-spaces">
           {note.content}
         </p>
 
-        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/50 to-black/0 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-slate-900/60 to-black/0 pointer-events-none" />
       </Dialog.Trigger>
 
       <Dialog.Portal>
