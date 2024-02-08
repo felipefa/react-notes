@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { X } from 'lucide-react';
+import { Mic, X } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -66,9 +66,11 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
     speechRecognition.interimResults = true;
 
     speechRecognition.onresult = (event) => {
+      const preRecordedContent = content !== '' ? `${content} ` : '';
+
       const transcription = Array.from(event.results).reduce((text, result) => {
         return text.concat(result[0].transcript);
-      }, '');
+      }, preRecordedContent);
 
       setContent(transcription);
     };
@@ -154,15 +156,26 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
                 <div className="size-3 rounded-full bg-red-500 animate-pulse" />
                 Recording! (Click to stop)
               </button>
-            ) : (
+            ) : null}
+
+            {content !== '' && !isRecording ? (
               <button
-                className="w-full bg-lime-400 py-4 text-center text-sm text-lime-950 font-medium hover:bg-lime-500 focus-visible:underline transition-colors"
-                onClick={handleSaveNote}
+                className="w-full flex items-center justify-center gap-2 bg-slate-900 py-4 text-center text-sm text-slate-300 font-medium hover:text-slate-100 focus-visible:underline transition-colors"
+                onClick={handleStartRecording}
                 type="button"
               >
-                Save note
+                <Mic className="size-4" />
+                Record
               </button>
-            )}
+            ) : null}
+
+            <button
+              className="w-full bg-lime-400 py-4 text-center text-sm text-lime-950 font-medium hover:bg-lime-500 focus-visible:underline transition-colors"
+              onClick={handleSaveNote}
+              type="button"
+            >
+              Save note
+            </button>
           </form>
         </Dialog.Content>
       </Dialog.Portal>
