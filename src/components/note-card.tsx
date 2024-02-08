@@ -28,7 +28,9 @@ export function NoteCard({ note, onNoteDeleted }: NoteCardProps) {
           {dateFormatted}
         </span>
 
-        <p className="text-sm leading-6 text-slate-400">{note.content}</p>
+        <p className="text-sm leading-6 text-slate-400 text-ellipsis overflow-hidden">
+          {note.content}
+        </p>
 
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/50 to-black/0 pointer-events-none" />
       </Dialog.Trigger>
