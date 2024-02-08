@@ -3,22 +3,34 @@ import { formatDistanceToNow } from 'date-fns';
 import { Trash, X } from 'lucide-react';
 import { toast } from 'sonner';
 
-interface NoteCardProps {
-  note: {
-    id: string;
-    date: Date;
-    content: string;
-  };
-  onNoteDeleted(id: string): void;
+interface Note {
+  id: string;
+  content: string;
+  date: Date;
 }
 
-export function NoteCard({ note, onNoteDeleted }: NoteCardProps) {
+interface NoteCardProps {
+  note: Note;
+  onNoteDeleted(id: string): void;
+  onNoteRestored(note: Note): void;
+}
+
+export function NoteCard({
+  note,
+  onNoteDeleted,
+  onNoteRestored,
+}: NoteCardProps) {
   const dateFormatted = formatDistanceToNow(note.date, { addSuffix: true });
 
   function handleDeleteNote() {
     onNoteDeleted(note.id);
 
-    toast.success('Note deleted');
+    toast.success('Note deleted', {
+      action: { label: 'Undo', onClick: () => onNoteRestored(note) },
+      actionButtonStyle: {
+        backgroundColor: 'var(--success-text)',
+      },
+    });
   }
 
   return (

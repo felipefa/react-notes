@@ -49,6 +49,18 @@ export function App() {
     });
   }
 
+  function onNoteRestored(note: Note) {
+    setNotes((prevNotes) => {
+      const newNotes = [note, ...prevNotes].sort(
+        (a, b) => b.date.getTime() - a.date.getTime()
+      );
+
+      localStorage.setItem('notes', JSON.stringify(newNotes));
+
+      return newNotes;
+    });
+  }
+
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
 
@@ -84,7 +96,12 @@ export function App() {
         <NewNoteCard onNoteCreated={onNoteCreated} />
 
         {filteredNotes.map((note) => (
-          <NoteCard key={note.id} note={note} onNoteDeleted={onNoteDeleted} />
+          <NoteCard
+            key={note.id}
+            note={note}
+            onNoteDeleted={onNoteDeleted}
+            onNoteRestored={onNoteRestored}
+          />
         ))}
       </div>
     </div>
