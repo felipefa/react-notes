@@ -160,7 +160,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
               </button>
             ) : null}
 
-            {content !== '' && !isRecording ? (
+            {!isRecording && !shouldShowOnboarding ? (
               <button
                 className="w-full flex items-center justify-center gap-2 bg-slate-900 py-4 text-center text-sm text-slate-300 font-medium hover:text-slate-100 focus-visible:underline transition-colors"
                 onClick={handleStartRecording}
