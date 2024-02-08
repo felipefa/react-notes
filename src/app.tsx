@@ -23,7 +23,7 @@ export function App() {
 
         <NoteCard
           note={{
-            date: new Date(),
+            date: new Date(2024, 1, 5),
             content:
               'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, illo?        Laboriosam, culpa? Ipsum optio ab excepturi rem qui. Facilis maiores eius commodi vel totam ad error iure quaerat iste cupiditate!',
           }}
