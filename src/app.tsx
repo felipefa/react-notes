@@ -4,7 +4,6 @@ import { Divider } from './components/divider';
 import { Logo } from './components/logo';
 import { NewNoteCard } from './components/new-note-card';
 import { NoteCard } from './components/note-card';
-import { toast } from 'sonner';
 
 interface Note {
   id: string;
@@ -25,14 +24,9 @@ export function App() {
   });
 
   function onNoteCreated(content: string) {
-    if (content === '') {
-      toast.warning('A new note cannot be empty');
-      return false;
-    }
-
     const newNote = {
       id: crypto.randomUUID(),
-      content: content.trim(),
+      content,
       date: new Date(),
     };
 
@@ -43,8 +37,6 @@ export function App() {
 
       return newNotes;
     });
-
-    return true;
   }
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {

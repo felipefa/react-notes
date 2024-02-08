@@ -4,7 +4,7 @@ import React from 'react';
 import { toast } from 'sonner';
 
 interface NewNoteCardProps {
-  onNoteCreated(content: string): boolean;
+  onNoteCreated(content: string): void;
 }
 
 export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
@@ -26,15 +26,18 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
   function handleSaveNote(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const hasCreatedNote = onNoteCreated(content);
+    if (content === '') {
+      toast.warning('A note cannot be empty');
+      return;
+    }
 
-    if (hasCreatedNote) {
+    onNoteCreated(content.trim());
+
       setContent('');
 
       setShouldShowOnboarding(true);
 
       toast.success('Note saved');
-    }
   }
 
   return (
