@@ -139,7 +139,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
               ) : (
                 <textarea
                   autoFocus
-                  className="text-sm leading-6 text-slate-400 bg-transparent resize-none outline-none flex-1"
+                  className="text-sm leading-6 caret-slate-400 text-slate-400 bg-transparent resize-none outline-none flex-1"
                   placeholder="Type your note here"
                   onChange={handleContentChange}
                   value={content}
