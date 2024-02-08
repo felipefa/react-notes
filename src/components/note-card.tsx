@@ -42,12 +42,14 @@ export function NoteCard({ note, onNoteDeleted }: NoteCardProps) {
             <X className="size-5" />
           </Dialog.Close>
 
-          <div className="flex flex-1 flex-col gap-3 p-5">
-            <span className="text-sm font-medium text-slate-300">
+          <div className="flex flex-1 flex-col gap-3 overflow-hidden">
+            <span className="text-sm font-medium p-5 pb-0 text-slate-300">
               {dateFormatted}
             </span>
 
-            <p className="text-sm leading-6 text-slate-400">{note.content}</p>
+            <p className="text-sm leading-6 text-slate-400 p-5 pt-0 overflow-auto">
+              {note.content}
+            </p>
           </div>
 
           <button
