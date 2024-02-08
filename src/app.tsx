@@ -23,9 +23,14 @@ export function App() {
   });
 
   function onNoteCreated(content: string) {
+    if (content === '') {
+      toast.warning('A new note cannot be empty');
+      return false;
+    }
+
     const newNote = {
       id: crypto.randomUUID(),
-      content,
+      content: content.trim(),
       date: new Date(),
     };
 
@@ -36,6 +41,8 @@ export function App() {
 
       return newNotes;
     });
+
+    return true;
   }
 
   return (
