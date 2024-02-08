@@ -3,7 +3,11 @@ import { X } from 'lucide-react';
 import React from 'react';
 import { toast } from 'sonner';
 
-export function NewNoteCard() {
+interface NewNoteCardProps {
+  onNoteCreated(content: string): void;
+}
+
+export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
   const [shouldShowOnboarding, setShouldShowOnboarding] = React.useState(true);
   const [content, setContent] = React.useState('');
 
@@ -22,7 +26,11 @@ export function NewNoteCard() {
   function handleSaveNote(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    console.log(content);
+    onNoteCreated(content);
+
+    setContent('');
+
+    setShouldShowOnboarding(true);
 
     toast.success('Note saved');
   }
@@ -70,6 +78,7 @@ export function NewNoteCard() {
                   className="text-sm leading-6 text-slate-400 bg-transparent resize-none outline-none flex-1"
                   placeholder="Type your note here"
                   onChange={handleContentChange}
+                  value={content}
                 />
               )}
             </div>
