@@ -96,7 +96,7 @@ export function NewNoteCard({ onNoteCreated }: NewNoteCardProps) {
 
   return (
     <Dialog.Root>
-      <Dialog.Trigger className="flex flex-col gap-3 text-left rounded-md bg-slate-700 p-5 hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none">
+      <Dialog.Trigger className="flex flex-col gap-4 text-left rounded-md bg-slate-700 p-5 hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none">
         <span className="text-sm font-medium text-slate-200">Add note</span>
         <p className="text-sm leading-6 text-slate-400">
           Record an audio note that will be automatically converted into text.

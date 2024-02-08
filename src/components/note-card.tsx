@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { formatDistanceToNow } from 'date-fns';
-import { X } from 'lucide-react';
+import { Trash, X } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface NoteCardProps {
@@ -23,7 +23,14 @@ export function NoteCard({ note, onNoteDeleted }: NoteCardProps) {
 
   return (
     <Dialog.Root>
-      <Dialog.Trigger className="flex flex-col gap-3 rounded-md text-left bg-slate-800 p-5 space-y-3 overflow-hidden relative hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none">
+      <Dialog.Trigger className="flex flex-col gap-4 rounded-md text-left bg-slate-800 p-5 overflow-hidden relative hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400 outline-none group">
+        <span
+          className="absolute hidden group-hover:block right-0 top-0 bg-slate-900 p-2 text-red-200 hover:text-red-400 rounded-bl-md"
+          onClick={handleDeleteNote}
+        >
+          <Trash className="size-5" />
+        </span>
+
         <span className="text-sm font-medium text-slate-300">
           {dateFormatted}
         </span>
