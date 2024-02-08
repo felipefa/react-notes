@@ -1,16 +1,25 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { formatDistanceToNow } from 'date-fns';
 import { X } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface NoteCardProps {
   note: {
+    id: string;
     date: Date;
     content: string;
   };
+  onNoteDeleted(id: string): void;
 }
 
-export function NoteCard({ note }: NoteCardProps) {
+export function NoteCard({ note, onNoteDeleted }: NoteCardProps) {
   const dateFormatted = formatDistanceToNow(note.date, { addSuffix: true });
+
+  function handleDeleteNote() {
+    onNoteDeleted(note.id);
+
+    toast.success('Note deleted');
+  }
 
   return (
     <Dialog.Root>
@@ -41,6 +50,7 @@ export function NoteCard({ note }: NoteCardProps) {
 
           <button
             className="w-full bg-slate-800 py-4 text-center text-sm text-red-400 font-medium transition-colors hover:bg-slate-900 focus-visible:underline"
+            onClick={handleDeleteNote}
             type="button"
           >
             Delete note

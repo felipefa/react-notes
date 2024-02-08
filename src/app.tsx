@@ -39,6 +39,16 @@ export function App() {
     });
   }
 
+  function onNoteDeleted(id: string) {
+    setNotes((prevNotes) => {
+      const newNotes = prevNotes.filter((note) => note.id !== id);
+
+      localStorage.setItem('notes', JSON.stringify(newNotes));
+
+      return newNotes;
+    });
+  }
+
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     const query = event.target.value;
 
@@ -74,7 +84,7 @@ export function App() {
         <NewNoteCard onNoteCreated={onNoteCreated} />
 
         {filteredNotes.map((note) => (
-          <NoteCard key={note.id} note={note} />
+          <NoteCard key={note.id} note={note} onNoteDeleted={onNoteDeleted} />
         ))}
       </div>
     </div>
